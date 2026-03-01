@@ -1,1 +1,0 @@
-print("hi".center(7,"*"))
