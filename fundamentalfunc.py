@@ -79,13 +79,6 @@ def remain_budget(budget,match):
     else :
         print(f"heyy! you have {budget} amount remaining only 😓")
 
-    
-
-# def budget_end(budget) :
-#     if budget <=0 :
-#         print("no more budget...add up ur budget to run analyzer!")
-#         return True
-#     else:
-#         return False
+  
 
 
