@@ -32,86 +32,7 @@ def date():
     else :
         pass
 
-    #     if leap_year(date_format[2]) :
-    #          #leap year
-    #             if date_format[1] == 2 :
-    #                 if date_format[0] <= 29 :
-    #                     pass
-    #                 else:
-    #                     print("Invalid date")
-    #                     date()
-    #             else :
-    #                 if date_format[0] < month[date_format[1]] :
-    #                     pass
-    #                 else:
-    #                     print("Invalid date")
-                
-    #         else:
-    #             print("Invalid month")
-    #             date()
-    #     else:
-    #         if date_format[1] <=12:   # Not a leap year
-    #             if date_format[1] == 2 :
-    #                 if date_format[0] <=28:
-    #                     pass
-    #                 else:
-    #                     print("Inavlid date")
-    #                     date()
-    #             else:
-    #                 if date_format[0] <= month[date_format[1]]:
-    #                     pass 
-    #                 else:
-    #                     print("Invalid date")
-    #                     date() 
-    #         else:
-    #             print("Invalid month")
-    #             date()
-    # else:
-    #     print("Invalid year")
-    #     date()
 
-
-
-    # if date_format[2] <= 2026 :
-    #     if leap_year(date_format[2]) :
-    #         if date_format[1] <=12:   #leap year
-    #             if date_format[1] == 2 :
-    #                 if date_format[0] <= 29 :
-    #                     pass
-    #                 else:
-    #                     print("Invalid date")
-    #                     date()
-    #             else :
-    #                 if date_format[0] < month[date_format[1]] :
-    #                     pass
-    #                 else:
-    #                     print("Invalid date")
-                
-    #         else:
-    #             print("Invalid month")
-    #             date()
-    #     else:
-    #         if date_format[1] <=12:   # Not a leap year
-    #             if date_format[1] == 2 :
-    #                 if date_format[0] <=28:
-    #                     pass
-    #                 else:
-    #                     print("Inavlid date")
-    #                     date()
-    #             else:
-    #                 if date_format[0] <= month[date_format[1]]:
-    #                     pass 
-    #                 else:
-    #                     print("Invalid date")
-    #                     date() 
-    #         else:
-    #             print("Invalid month")
-    #             date()
-    # else:
-    #     print("Invalid year")
-    #     date()
-
-# date()
 def custom_category(match : dict) :
     
     while True:
@@ -124,29 +45,6 @@ def custom_category(match : dict) :
             break
         else:
             print("Enter valid choice!")
-
-    # # match["Food"] =  Food
-    # # match["Stationary"] = Stationary
-    # # match ["Miscellaneous"] = Miscellaneous
-    # # match ["Travel"] = Travel
-    # choice = input("Do you wanna add any other particular expense category? (y/n) :")
-    #     # try:
-    #     #     choice
-    #     # except ValueError as Exception :
-    #     #     print ("ValueError...Enter a valid choice ")
-    #     #     custom_category()
-    # def category_validity(choice ):
-    #     if (choice.lower() != "y" and choice.lower() != "n"):
-    #         print("Enter valid choice!") 
-    #         custom_category(match)
-        
-
-    # while(choice.lower() == "y"):
-    #     new_category = input("Enter new category name: ")
-    #     Nc_expense = int(input(f"Enter expense \n{new_category} : "))
-    #     match [new_category] = Nc_expense 
-    #     choice = input("Do you wanna add any other particular expense category? (y/n) : ")
-    #     category_validity(choice)
 
 
 def display(match : dict):
