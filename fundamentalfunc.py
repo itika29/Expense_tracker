@@ -1,193 +1,96 @@
-def date():
+import database
+from datetime import date
 
-    date_in= input("Enter date (dd-mm-yyyy): ")
+def Date():
+
+    date_in = input("Enter date or press Enter for today's date(YYYY-MM-DD): ")
+    # checks date validity 
     split_Date = date_in.split("-")
     date_format = list(map(int,split_Date))
-    month = {1:31,2:30,3:31,4:30,5:31,6:30,7:31,8:31,9:30,10:31,11:30,12:31}
+    month = {1:31,3:31,4:30,5:31,6:30,7:31,8:31,9:30,10:31,11:30,12:31}
 
     def leap_year(y : int) -> bool:
         if (y % 4 == 0 and y % 100 != 0) or (y % 400 == 0) :
             return True
         return False
     
-    if date_format[2] > 2026 :
+    if date_format[0] > 2026 :
         print("Inavlid year!")
-        date()
+        Date()
 
     elif date_format[1] > 12 :
         print ("Invalid month!")
-        date()
+        Date()
 
-    elif leap_year(date_format[2]) and date_format[1] == 2  and date_format[0] > 29 :
+    elif leap_year(date_format[0]) and date_format[1] == 2  and date_format[2] > 29 :
         print("Invalid date!")
-        date()
+        Date()
     
-    elif not leap_year(date_format[1]) and date_format[1] == 2  and date_format[0] > 28 :
+    elif not leap_year(date_format[0]) and date_format[1] == 2  and date_format[2] > 28 :
         print("Invalid date!")
-        date()
+        Date()
     
-    elif date_format[1] != 2 and date_format[0] > month[date_format[1]] :
+    elif date_format[1] != 2 and date_format[2] > month[date_format[1]] :
         print("Invalid date!")
-        date()
+        Date()
     else :
         pass
-
-    #     if leap_year(date_format[2]) :
-    #          #leap year
-    #             if date_format[1] == 2 :
-    #                 if date_format[0] <= 29 :
-    #                     pass
-    #                 else:
-    #                     print("Invalid date")
-    #                     date()
-    #             else :
-    #                 if date_format[0] < month[date_format[1]] :
-    #                     pass
-    #                 else:
-    #                     print("Invalid date")
-                
-    #         else:
-    #             print("Invalid month")
-    #             date()
-    #     else:
-    #         if date_format[1] <=12:   # Not a leap year
-    #             if date_format[1] == 2 :
-    #                 if date_format[0] <=28:
-    #                     pass
-    #                 else:
-    #                     print("Inavlid date")
-    #                     date()
-    #             else:
-    #                 if date_format[0] <= month[date_format[1]]:
-    #                     pass 
-    #                 else:
-    #                     print("Invalid date")
-    #                     date() 
-    #         else:
-    #             print("Invalid month")
-    #             date()
-    # else:
-    #     print("Invalid year")
-    #     date()
-
-
-
-    # if date_format[2] <= 2026 :
-    #     if leap_year(date_format[2]) :
-    #         if date_format[1] <=12:   #leap year
-    #             if date_format[1] == 2 :
-    #                 if date_format[0] <= 29 :
-    #                     pass
-    #                 else:
-    #                     print("Invalid date")
-    #                     date()
-    #             else :
-    #                 if date_format[0] < month[date_format[1]] :
-    #                     pass
-    #                 else:
-    #                     print("Invalid date")
-                
-    #         else:
-    #             print("Invalid month")
-    #             date()
-    #     else:
-    #         if date_format[1] <=12:   # Not a leap year
-    #             if date_format[1] == 2 :
-    #                 if date_format[0] <=28:
-    #                     pass
-    #                 else:
-    #                     print("Inavlid date")
-    #                     date()
-    #             else:
-    #                 if date_format[0] <= month[date_format[1]]:
-    #                     pass 
-    #                 else:
-    #                     print("Invalid date")
-    #                     date() 
-    #         else:
-    #             print("Invalid month")
-    #             date()
-    # else:
-    #     print("Invalid year")
-    #     date()
-
-# date()
-def custom_category(match : dict) :
     
-    while True:
-        choice= input("Do you want to enter any particular expense category?(y/n) ")
-        if (choice.lower()=="y") :
-            N_category = input("Enter category name :")
-            N_expense = int (input(f"Enter {N_category}'s expense \n{N_category} :"))
-            match[N_category] = N_expense
-        elif choice.lower() == "n" :
-            break
-        else:
-            print("Enter valid choice!")
-
-    # # match["Food"] =  Food
-    # # match["Stationary"] = Stationary
-    # # match ["Miscellaneous"] = Miscellaneous
-    # # match ["Travel"] = Travel
-    # choice = input("Do you wanna add any other particular expense category? (y/n) :")
-    #     # try:
-    #     #     choice
-    #     # except ValueError as Exception :
-    #     #     print ("ValueError...Enter a valid choice ")
-    #     #     custom_category()
-    # def category_validity(choice ):
-    #     if (choice.lower() != "y" and choice.lower() != "n"):
-    #         print("Enter valid choice!") 
-    #         custom_category(match)
+    if date_in == "":
+        date_in = date.today()
         
+    return date_in
 
-    # while(choice.lower() == "y"):
-    #     new_category = input("Enter new category name: ")
-    #     Nc_expense = int(input(f"Enter expense \n{new_category} : "))
-    #     match [new_category] = Nc_expense 
-    #     choice = input("Do you wanna add any other particular expense category? (y/n) : ")
-    #     category_validity(choice)
+def display(date_of_expense,date_of_budget):
 
+    expenditure = database.fetch_expense(date_of_expense)
+    remains = database.fetch_remaining(date_of_budget)
+    print(f""" 
+          
 
-def display(match : dict):
-    print (f'''
-🥁 Running Expense Tracker !
-🎯 Summarising user response
-📑 Expenses by category
-           
-🍔 Food : {match["Food"]} 
-🧩 Stationary : { match["Stationary"] }
-📍 Travel : {match["Travel"]}
-💅 Miscellaneous : {match["Miscellaneous"]} ''')
-    key= list(match.keys())
-    for i in range(4,len(key)):
-        print(f"✨ {key[i]} : {match[key[i]]}")
-       
+          🥁 Running Expense Tracker !
+          🎯 Summarising user response
+           The total amount you spent today : {expenditure}
+           Remaining budget in your wallet : {remains}
 
 
-def remain_budget(budget,match):
+    """)
+
+def total_moneyspent (remaining_amt):
+    curntBudget = database.curntbudget()
+    total_Spent = curntBudget[0]-remaining_amt
+    moneySpent_percent = (total_Spent/curntBudget[0]) * 100 
     
-    budget  = budget- sum(match.values())
-    if budget > ((1/2)*budget ):
-        print(f"Dear! \n🎉 {budget} amount is left now!")
-    elif budget == ((1/2)*budget):
-        print(f"Dear! \n📌 You have half of your budget leftover i.e {budget}")
-    elif budget >= (1/4)*budget and budget <= (1/2)*budget :
-        print(f"Dear! \n🥲 You have {budget} amount remaining ")
-    elif budget == 0:
-        print("Shit! your budget end!..add up your bugdet next time to run expense analyzer!")
-    elif budget < 0 :
-        print(f"So impractical! you expend more than your budget {budget}..May be you forgot to append more amount on your budget ")
-    else :
-        print(f"heyy! you have {budget} amount remaining only 😓")
+    return moneySpent_percent
 
+def total_dayspent ():
+    days = database.day_spent()
+    curntdate = days[0]
+    totaldays = days[1]
+    daySpent_percent = (curntdate / totaldays)* 100
     
+    return daySpent_percent
 
-# def budget_end(budget) :
-#     if budget <=0 :
-#         print("no more budget...add up ur budget to run analyzer!")
-#         return True
-#     else:
-#         return False
+def remarks(remaining_amt):
+    daysSpent = total_dayspent()
+    moneySpent = total_moneyspent(remaining_amt)
+    difference = moneySpent - daysSpent
+    if difference <= 10 and difference >= -10:
+        print("🟢You’re on track with your monthly budget 👍")
+        
+    elif difference > 10 and difference <= 25:
+        print("🟡You’re spending slightly faster than planned—monitor expenses.")
+        
+    elif difference > 25 :
+        print("🔴You are overspending significantly—review your expenses urgently.")
+        
+    elif difference >= -25 and difference < -10:
+        print("🔵Good control! You’re spending below your budget pace")        
+        
+    elif difference < -25 :
+        print("🟣You’re saving aggressively this month.")
+   
+    
+ 
 
-
+        
